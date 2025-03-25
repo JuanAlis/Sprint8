@@ -28,7 +28,7 @@ const Navbar = () => {
                             <Link className="nav-link" to="/fullcalendar">FullCalendar</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/graficos">Gràfics (Chart.js)</Link>
+                            <Link className="nav-link" to="/graficos">Gráficos</Link>
                         </li>
                     </ul>
                 </div>

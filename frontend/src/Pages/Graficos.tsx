@@ -1,5 +1,12 @@
-const Graficos = () => {
-    return <h1>Gràfics (Chart.js)</h1>;
+import React from "react";
+import Charts from "../componentes/Charts"; // ajusta la ruta según tu estructura
+
+const ChartsPage: React.FC = () => {
+  return (
+    <div className="container mt-5">
+      <Charts />
+    </div>
+  );
 };
 
-export default Graficos;
+export default ChartsPage;
