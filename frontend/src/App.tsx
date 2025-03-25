@@ -4,6 +4,7 @@ import Home from "./Pages/Home";
 import Mapa from "./Pages/Mapa";
 import FullCalendar from "./Pages/FullCalendar";
 import Graficos from "./Pages/Graficos";
+import Registro from "./Pages/Registro";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <div className="container mt-4">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/registro" element={<Registro />}/>
           <Route path="/mapa" element={<Mapa />} />
           <Route path="/fullcalendar" element={<FullCalendar />} />
           <Route path="/graficos" element={<Graficos />} />

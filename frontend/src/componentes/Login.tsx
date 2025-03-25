@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser, registerUser } from "../redux/authSlice";
+import { loginUser, registerUser, logout } from "../redux/authSlice";
 import { RootState } from "../redux/store";
 
 const Login: React.FC = () => {
     const dispatch = useDispatch();
-    const { loading, error } = useSelector((state: RootState) => state.auth);
+    const { user, token, loading, error } = useSelector((state: RootState) => state.auth);
 
     const [isRegistering, setIsRegistering] = useState(false);
     const [nombre, setNombre] = useState("");
@@ -17,12 +17,38 @@ const Login: React.FC = () => {
         e.preventDefault();
 
         if (isRegistering) {
-            dispatch(registerUser({ nombre, email, password, tipo }) as any);
+            dispatch(registerUser({ nombre, email, password, tipo }) as any)
+                .then((res: any) => {
+                    if (!res.error) {
+                        alert("✅ Usuario registrado correctamente");
+                    }
+                });
         } else {
             dispatch(loginUser({ email, password }) as any);
         }
     };
 
+    const handleLogout = () => {
+        dispatch(logout());
+        alert("Has cerrado sesión");
+    };
+
+    // 👉 Si hay usuario logueado, mostramos el perfil
+    if (user && token) {
+        return (
+            <div className="container">
+                <h2>Perfil de Usuario</h2>
+                <p><strong>Nombre:</strong> {user.nombre}</p>
+                <p><strong>Email:</strong> {user.email}</p>
+                <p><strong>Tipo:</strong> {user.tipo}</p>
+                <button className="btn btn-danger mt-2" onClick={handleLogout}>
+                    Cerrar sesión
+                </button>
+            </div>
+        );
+    }
+
+    // 👉 Si no hay usuario logueado, mostramos el formulario
     return (
         <div className="container">
             <h2>{isRegistering ? "Registrarse" : "Iniciar Sesión"}</h2>
