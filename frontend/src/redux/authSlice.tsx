@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// Definir la interfaz del estado de autenticación
 interface AuthState {
     token: string | null;
     user: { _id: string; nombre: string; email: string; tipo: string } | null;
@@ -9,7 +8,6 @@ interface AuthState {
     error: string | null;
 }
 
-// Estado inicial
 const initialState: AuthState = {
     token: localStorage.getItem("token") || null,
     user: null,
@@ -17,7 +15,6 @@ const initialState: AuthState = {
     error: null,
 };
 
-// 🔐 Acción para iniciar sesión
 export const loginUser = createAsyncThunk(
     "auth/loginUser",
     async (credentials: { email: string; password: string }, { rejectWithValue }) => {
@@ -32,7 +29,6 @@ export const loginUser = createAsyncThunk(
     }
 );
 
-// 🧾 Acción para registrar nuevo usuario
 export const registerUser = createAsyncThunk(
     "auth/registerUser",
     async (
@@ -50,7 +46,6 @@ export const registerUser = createAsyncThunk(
     }
 );
 
-// 📄 Obtener perfil del usuario logueado
 export const fetchProfile = createAsyncThunk(
     "auth/fetchProfile",
     async (_, { rejectWithValue }) => {
@@ -66,7 +61,6 @@ export const fetchProfile = createAsyncThunk(
     }
 );
 
-// Slice de Redux
 const authSlice = createSlice({
     name: "auth",
     initialState,
@@ -79,7 +73,6 @@ const authSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            // Login
             .addCase(loginUser.pending, (state) => {
                 state.loading = true;
                 state.error = null;
@@ -109,7 +102,6 @@ const authSlice = createSlice({
                 state.error = action.payload as string;
             })
 
-            // Perfil
             .addCase(fetchProfile.fulfilled, (state, action: PayloadAction<any>) => {
                 state.user = action.payload;
             });

@@ -33,7 +33,6 @@ const Login: React.FC = () => {
         alert("Has cerrado sesión");
     };
 
-    // 👉 Si hay usuario logueado, mostramos el perfil
     if (user && token) {
         return (
             <div className="container">
@@ -48,7 +47,6 @@ const Login: React.FC = () => {
         );
     }
 
-    // 👉 Si no hay usuario logueado, mostramos el formulario
     return (
         <div className="container">
             <h2>{isRegistering ? "Registrarse" : "Iniciar Sesión"}</h2>

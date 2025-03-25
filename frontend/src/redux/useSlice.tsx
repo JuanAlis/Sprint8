@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// Definir la interfaz para los usuarios
 interface User {
     _id: string;
     nombre: string;
@@ -9,7 +8,6 @@ interface User {
     tipo: "alumno" | "profesor" | "admin";
 }
 
-// Estado inicial
 interface UserState {
     users: User[];
     loading: boolean;
@@ -22,7 +20,6 @@ const initialState: UserState = {
     error: null,
 };
 
-// 🔹 Obtener usuarios
 export const fetchUsers = createAsyncThunk("users/fetchUsers", async (_, { rejectWithValue }) => {
     try {
         const token = localStorage.getItem("token");
@@ -37,8 +34,6 @@ export const fetchUsers = createAsyncThunk("users/fetchUsers", async (_, { rejec
     }
 });
 
-// 🔹 Eliminar usuario
-// useSlice.ts
 export const deleteUser = createAsyncThunk(
     "users/deleteUser",
     async ({ id, token }: { id: string; token: string }, { rejectWithValue }) => {
@@ -54,7 +49,6 @@ export const deleteUser = createAsyncThunk(
   );
   
 
-// 🔹 Actualizar usuario (nombre, email, tipo)
 export const updateUser = createAsyncThunk(
     "users/updateUser",
     async (
@@ -81,7 +75,6 @@ export const updateUser = createAsyncThunk(
   );
   
 
-// Slice de Redux para gestionar usuarios
 const userSlice = createSlice({
     name: "users",
     initialState,

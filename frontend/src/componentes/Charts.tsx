@@ -12,7 +12,6 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-// Datos de ejemplo
 const datosPorDefecto = [
   { mes: "Enero", cantidad: 24 },
   { mes: "Febrero", cantidad: 30 },

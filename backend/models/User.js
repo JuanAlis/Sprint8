@@ -9,7 +9,6 @@ const UserSchema = new mongoose.Schema({
   fecha_creacion: { type: Date, default: Date.now }
 });
 
-// Hashear la contraseña antes de guardar
 UserSchema.pre('save', async function (next) {
   if (!this.isModified('password')) return next();
   const salt = await bcrypt.genSalt(10);

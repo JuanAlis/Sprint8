@@ -1,5 +1,5 @@
 import React from "react";
-import Charts from "../componentes/Charts"; // ajusta la ruta según tu estructura
+import Charts from "../componentes/Charts"; 
 
 const ChartsPage: React.FC = () => {
   return (

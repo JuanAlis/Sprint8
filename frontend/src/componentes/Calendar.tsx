@@ -43,7 +43,7 @@ const Calendar: React.FC = () => {
       arg.event.title
     );
 
-    if (accion === null) return; // Cancelado
+    if (accion === null) return; 
 
     let nuevosEventos = [...eventos];
 

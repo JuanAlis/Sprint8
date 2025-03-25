@@ -2,11 +2,9 @@ import React, { useEffect, useRef, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
-// ✅ Tu token de Mapbox
 mapboxgl.accessToken =
   "pk.eyJ1IjoianVhbjAwNzEwIiwiYSI6ImNtOG9jdjlxcjAxNGkyeXNiNmRoMXN6MmsifQ.7dpBtJ0O7PdTg12Ge0jPfA";
 
-// 📍 Lista de lugares en Barcelona con categorías
 const places = [
   {
     nombre: "Sagrada Familia",
@@ -72,7 +70,6 @@ const Mapa: React.FC = () => {
   useEffect(() => {
     if (!mapRef.current) return;
 
-    // 🧹 Eliminar todos los marcadores anteriores
     const existingMarkers = document.querySelectorAll(".mapboxgl-marker");
     existingMarkers.forEach((m) => m.remove());
 
@@ -81,7 +78,6 @@ const Mapa: React.FC = () => {
         ? places
         : places.filter((p) => p.categoria === selectedCategory);
 
-    // 🔁 Añadir los nuevos marcadores filtrados
     filteredPlaces.forEach((place) => {
       const el = document.createElement("div");
       el.style.backgroundColor = getColorByCategory(place.categoria);

@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "../redux/store";
 import { fetchUsers, updateUser, deleteUser } from "../redux/useSlice";
 
-// Tipado del usuario
 interface User {
     _id: string;
     nombre: string;
@@ -14,13 +13,13 @@ interface User {
 const UserList: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>();
     const { users, loading, error } = useSelector((state: RootState) => state.users);
-    const token = useSelector((state: RootState) => state.auth.token); // Obtener el token desde Redux
+    const token = useSelector((state: RootState) => state.auth.token); 
 
     const [editingUser, setEditingUser] = useState<User | null>(null);
 
     useEffect(() => {
         if (token) {
-          console.log("✅ useEffect ejecutado con token:", token); // DEBE aparecer
+          console.log("✅ useEffect ejecutado con token:", token); 
           dispatch(fetchUsers());
         } else {
           console.warn("⛔ No hay token en Redux");

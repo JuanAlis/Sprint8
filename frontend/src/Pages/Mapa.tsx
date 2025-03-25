@@ -1,5 +1,5 @@
 import React from "react";
-import Mapa from "../componentes/Mapa"; // ajusta la ruta si tu componente está en otra carpeta
+import Mapa from "../componentes/Mapa"; 
 
 const MapaPage: React.FC = () => {
     return (
